@@ -1,0 +1,3299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>XAVI ENGINEERING | Electronics • Telecom • Networking • HVAC</title>
+
+<meta name="description"
+content="XAVI ENGINEERING provides Electronics, Telecommunication, Networking, HVAC, Smart Automation and Technical Support services.">
+
+<style>
+
+/* =========================================================
+   XAVI ENGINEERING
+   COMPLETE SINGLE FILE WEBSITE
+   ========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+:root{
+    --bg:#030711;
+    --bg2:#07111f;
+    --card:#091827;
+    --card2:#0c2035;
+    --blue:#00b7ff;
+    --cyan:#00f0ff;
+    --white:#ffffff;
+    --muted:#9db1c7;
+    --line:rgba(0,210,255,.18);
+    --shadow:0 0 35px rgba(0,190,255,.15);
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(0,174,255,.13),transparent 25%),
+        radial-gradient(circle at 85% 20%,rgba(0,240,255,.08),transparent 25%),
+        var(--bg);
+    color:var(--white);
+    overflow-x:hidden;
+}
+
+/* =========================
+   LOADING SCREEN
+   ========================= */
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#02060d;
+    z-index:99999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    transition:1s;
+}
+
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-logo{
+    width:130px;
+    height:130px;
+    border:2px solid var(--cyan);
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    box-shadow:
+        0 0 20px var(--cyan),
+        inset 0 0 30px rgba(0,240,255,.2);
+    animation:loaderSpin 2s linear infinite;
+}
+
+.loader-logo span{
+    font-size:40px;
+    font-weight:900;
+    color:var(--cyan);
+    text-shadow:0 0 20px var(--cyan);
+}
+
+.loader-ring{
+    position:absolute;
+    width:160px;
+    height:160px;
+    border:1px dashed rgba(0,240,255,.5);
+    border-radius:50%;
+    animation:loaderSpinReverse 4s linear infinite;
+}
+
+.loader-text{
+    margin-top:30px;
+    letter-spacing:7px;
+    font-size:13px;
+    color:#bdefff;
+    animation:blink 1s infinite;
+}
+
+@keyframes loaderSpin{
+    to{transform:rotate(360deg);}
+}
+
+@keyframes loaderSpinReverse{
+    to{transform:rotate(-360deg);}
+}
+
+@keyframes blink{
+    50%{opacity:.35;}
+}
+
+/* =========================
+   BACKGROUND PARTICLES
+   ========================= */
+
+#particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 10px var(--cyan);
+    animation:particleFloat linear infinite;
+}
+
+@keyframes particleFloat{
+    from{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+    15%{opacity:1;}
+    85%{opacity:1;}
+    to{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:5000;
+    background:rgba(2,8,17,.82);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
+}
+
+.navbar{
+    width:92%;
+    max-width:1400px;
+    margin:auto;
+    min-height:78px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.nav-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:white;
+}
+
+.nav-xe{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:2px solid var(--cyan);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--cyan);
+    font-weight:900;
+    box-shadow:0 0 18px rgba(0,240,255,.5);
+    animation:navPulse 2s infinite;
+}
+
+@keyframes navPulse{
+    50%{
+        box-shadow:
+        0 0 8px var(--cyan),
+        0 0 30px rgba(0,240,255,.7);
+    }
+}
+
+.nav-name{
+    font-weight:900;
+    letter-spacing:2px;
+    font-size:17px;
+}
+
+.nav-name small{
+    display:block;
+    color:var(--cyan);
+    font-size:9px;
+    letter-spacing:4px;
+    margin-top:3px;
+}
+
+.nav-links{
+    display:flex;
+    list-style:none;
+    gap:28px;
+}
+
+.nav-links a{
+    color:#dcefff;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:.8px;
+    position:relative;
+    transition:.3s;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-9px;
+    width:0;
+    height:2px;
+    background:var(--cyan);
+    box-shadow:0 0 10px var(--cyan);
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--cyan);
+}
+
+.nav-links a:hover::after{
+    width:100%;
+    left:0;
+}
+
+.menu-btn{
+    display:none;
+    font-size:27px;
+    color:var(--cyan);
+    cursor:pointer;
+}
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero{
+    min-height:100vh;
+    padding:130px 5% 70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-grid{
+    width:100%;
+    max-width:1450px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.hero-content{
+    animation:heroIn 1.3s ease forwards;
+}
+
+@keyframes heroIn{
+    from{
+        opacity:0;
+        transform:translateX(-60px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 17px;
+    border:1px solid rgba(0,240,255,.35);
+    border-radius:30px;
+    background:rgba(0,200,255,.05);
+    color:#bcefff;
+    font-size:11px;
+    letter-spacing:2px;
+    margin-bottom:24px;
+}
+
+.badge i{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#00ff95;
+    box-shadow:0 0 12px #00ff95;
+    animation:blink 1s infinite;
+}
+
+.hero h1{
+    font-size:clamp(50px,7vw,100px);
+    line-height:.92;
+    letter-spacing:-4px;
+    font-weight:950;
+}
+
+.hero h1 .xavi{
+    color:white;
+}
+
+.hero h1 .engineering{
+    display:block;
+    color:transparent;
+    -webkit-text-stroke:1px var(--cyan);
+    text-shadow:0 0 30px rgba(0,220,255,.2);
+}
+
+.hero-description{
+    margin:30px 0;
+    max-width:620px;
+    color:var(--muted);
+    line-height:1.8;
+    font-size:16px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 25px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:13px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    transition:.35s;
+    cursor:pointer;
+    border:none;
+}
+
+.btn-primary{
+    color:#001019;
+    background:linear-gradient(90deg,var(--cyan),var(--blue));
+    box-shadow:0 0 25px rgba(0,220,255,.25);
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 40px rgba(0,220,255,.55);
+}
+
+.btn-outline{
+    color:white;
+    border:1px solid rgba(0,220,255,.4);
+    background:rgba(0,200,255,.04);
+}
+
+.btn-outline:hover{
+    border-color:var(--cyan);
+    color:var(--cyan);
+    transform:translateY(-4px);
+}
+
+/* =========================
+   ADVANCED XE LOGO
+   ========================= */
+
+.hero-logo-area{
+    min-height:600px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+.tech-logo{
+    width:min(540px,42vw);
+    height:min(540px,42vw);
+    min-width:360px;
+    min-height:360px;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo-orbit{
+    position:absolute;
+    border:1px solid rgba(0,220,255,.25);
+    border-radius:50%;
+    box-shadow:0 0 20px rgba(0,220,255,.06);
+}
+
+.orbit-one{
+    width:78%;
+    height:78%;
+    animation:orbitRotate 14s linear infinite;
+}
+
+.orbit-two{
+    width:92%;
+    height:58%;
+    transform:rotate(58deg);
+    border-style:dashed;
+    animation:orbitRotateReverse 11s linear infinite;
+}
+
+.orbit-three{
+    width:105%;
+    height:70%;
+    transform:rotate(-48deg);
+    animation:orbitRotate 18s linear infinite;
+}
+
+@keyframes orbitRotate{
+    to{transform:rotate(360deg);}
+}
+
+@keyframes orbitRotateReverse{
+    to{transform:rotate(-360deg);}
+}
+
+.logo-dot{
+    position:absolute;
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 20px var(--cyan);
+}
+
+.dot-one{
+    top:15%;
+    left:20%;
+    animation:dotMove 3s infinite alternate;
+}
+
+.dot-two{
+    right:13%;
+    top:38%;
+    animation:dotMove 2.4s infinite alternate-reverse;
+}
+
+.dot-three{
+    bottom:18%;
+    left:27%;
+    animation:dotMove 3.5s infinite alternate;
+}
+
+.dot-four{
+    bottom:26%;
+    right:18%;
+    animation:dotMove 2.8s infinite alternate-reverse;
+}
+
+@keyframes dotMove{
+    to{
+        transform:scale(1.7);
+        box-shadow:0 0 35px var(--cyan);
+    }
+}
+
+.logo-main{
+    width:58%;
+    height:58%;
+    border-radius:50%;
+    border:2px solid var(--cyan);
+    background:
+        radial-gradient(circle,rgba(0,240,255,.16),rgba(0,50,80,.5) 45%,#030b15 75%);
+    box-shadow:
+        0 0 20px rgba(0,220,255,.8),
+        0 0 80px rgba(0,180,255,.25),
+        inset 0 0 50px rgba(0,200,255,.2);
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    animation:logoFloat 4s ease-in-out infinite;
+    z-index:3;
+}
+
+.logo-main::before{
+    content:"";
+    position:absolute;
+    inset:13px;
+    border:1px dashed rgba(0,240,255,.5);
+    border-radius:50%;
+    animation:orbitRotateReverse 8s linear infinite;
+}
+
+.logo-main::after{
+    content:"";
+    position:absolute;
+    width:12px;
+    height:12px;
+    background:white;
+    border-radius:50%;
+    top:15px;
+    left:50%;
+    box-shadow:
+        0 0 10px white,
+        0 0 25px var(--cyan);
+    animation:energyDot 2s linear infinite;
+}
+
+@keyframes energyDot{
+    50%{transform:translateY(35px);}
+    100%{transform:translateY(0);}
+}
+
+@keyframes logoFloat{
+    0%,100%{
+        transform:translateY(0) scale(1);
+    }
+    50%{
+        transform:translateY(-13px) scale(1.025);
+    }
+}
+
+.logo-xe{
+    font-size:clamp(55px,7vw,92px);
+    line-height:.8;
+    font-weight:950;
+    letter-spacing:-7px;
+    color:white;
+    text-shadow:
+        0 0 8px white,
+        0 0 25px var(--cyan),
+        0 0 50px rgba(0,210,255,.7);
+    z-index:2;
+}
+
+.logo-xe span{
+    color:var(--cyan);
+}
+
+.logo-title{
+    margin-top:17px;
+    font-size:13px;
+    letter-spacing:5px;
+    font-weight:bold;
+    color:#d9f8ff;
+    z-index:2;
+}
+
+.logo-subtitle{
+    margin-top:6px;
+    color:var(--cyan);
+    font-size:9px;
+    letter-spacing:4px;
+    z-index:2;
+}
+
+.signal{
+    position:absolute;
+    width:180px;
+    height:180px;
+    border:1px solid rgba(0,240,255,.25);
+    border-radius:50%;
+    animation:signalPulse 3s infinite;
+}
+
+.signal:nth-child(2){
+    animation-delay:1s;
+}
+
+.signal:nth-child(3){
+    animation-delay:2s;
+}
+
+@keyframes signalPulse{
+    0%{
+        transform:scale(.5);
+        opacity:.8;
+    }
+    100%{
+        transform:scale(2);
+        opacity:0;
+    }
+}
+
+/* =========================
+   STATS
+   ========================= */
+
+.stats{
+    width:92%;
+    max-width:1200px;
+    margin:0 auto 100px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--line);
+    border-radius:18px;
+    overflow:hidden;
+    background:rgba(5,18,30,.7);
+    backdrop-filter:blur(12px);
+}
+
+.stat{
+    text-align:center;
+    padding:30px 15px;
+    border-right:1px solid var(--line);
+}
+
+.stat:last-child{
+    border-right:none;
+}
+
+.stat-number{
+    font-size:38px;
+    color:var(--cyan);
+    font-weight:900;
+    text-shadow:0 0 20px rgba(0,220,255,.35);
+}
+
+.stat p{
+    color:#8fa6bc;
+    font-size:11px;
+    margin-top:7px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+/* =========================
+   GENERAL SECTION
+   ========================= */
+
+section{
+    padding:110px 5%;
+    position:relative;
+}
+
+.section-head{
+    max-width:900px;
+    margin:0 auto 60px;
+    text-align:center;
+}
+
+.section-label{
+    color:var(--cyan);
+    font-size:11px;
+    letter-spacing:4px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.section-head h2{
+    font-size:clamp(35px,5vw,58px);
+    margin-bottom:18px;
+}
+
+.section-head p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+/* =========================
+   SERVICES
+   ========================= */
+
+.services-grid{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.service-card{
+    position:relative;
+    min-height:520px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    overflow:hidden;
+    background:#06111e;
+    opacity:0;
+    transform:translateY(60px);
+    transition:
+        opacity .8s ease,
+        transform .8s ease,
+        border-color .4s,
+        box-shadow .4s;
+}
+
+.service-card.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.service-card:hover{
+    border-color:rgba(0,240,255,.65);
+    box-shadow:0 20px 60px rgba(0,180,255,.13);
+    transform:translateY(-10px);
+}
+
+.service-image{
+    height:245px;
+    overflow:hidden;
+    position:relative;
+}
+
+.service-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:1s;
+    filter:saturate(.85) brightness(.65);
+}
+
+.service-card:hover .service-image img{
+    transform:scale(1.13);
+    filter:saturate(1.2) brightness(.8);
+}
+
+.image-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        transparent 25%,
+        rgba(3,7,17,.98) 100%
+    );
+}
+
+.service-content{
+    padding:25px;
+    position:relative;
+    margin-top:-35px;
+    z-index:2;
+}
+
+.service-icon{
+    width:65px;
+    height:65px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:15px;
+    background:rgba(0,220,255,.1);
+    border:1px solid rgba(0,220,255,.3);
+    color:var(--cyan);
+    font-size:28px;
+    margin-bottom:18px;
+    box-shadow:0 0 25px rgba(0,220,255,.08);
+}
+
+/* Individual service animations */
+
+.electric-icon{
+    animation:electricPulse 1.5s infinite;
+}
+
+@keyframes electricPulse{
+    50%{
+        box-shadow:
+        0 0 10px var(--cyan),
+        0 0 40px rgba(0,240,255,.6);
+        transform:scale(1.08);
+    }
+}
+
+.telecom-icon{
+    position:relative;
+}
+
+.telecom-icon::before,
+.telecom-icon::after{
+    content:"";
+    position:absolute;
+    border:1px solid var(--cyan);
+    border-radius:50%;
+    width:25px;
+    height:25px;
+    animation:radioWave 2s infinite;
+}
+
+.telecom-icon::after{
+    animation-delay:1s;
+}
+
+@keyframes radioWave{
+    from{
+        transform:scale(.4);
+        opacity:1;
+    }
+    to{
+        transform:scale(2.8);
+        opacity:0;
+    }
+}
+
+.network-icon{
+    animation:networkPulse 2s infinite;
+}
+
+@keyframes networkPulse{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+}
+
+.hvac-icon{
+    animation:fanRotate 2s linear infinite;
+}
+
+@keyframes fanRotate{
+    to{transform:rotate(360deg);}
+}
+
+.automation-icon{
+    animation:automationPulse 2s infinite;
+}
+
+@keyframes automationPulse{
+    0%,100%{
+        box-shadow:0 0 5px rgba(0,220,255,.1);
+    }
+    50%{
+        box-shadow:0 0 35px rgba(0,220,255,.55);
+    }
+}
+
+.support-icon{
+    animation:supportScan 2s infinite;
+}
+
+@keyframes supportScan{
+    0%,100%{transform:translateX(0);}
+    50%{transform:translateX(8px);}
+}
+
+.service-content h3{
+    font-size:23px;
+    margin-bottom:13px;
+}
+
+.service-content p{
+    color:#91a7ba;
+    font-size:14px;
+    line-height:1.7;
+    margin-bottom:18px;
+}
+
+.service-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+}
+
+.service-tags span{
+    font-size:9px;
+    letter-spacing:1px;
+    padding:7px 9px;
+    border-radius:5px;
+    color:#a9ecff;
+    background:rgba(0,200,255,.06);
+    border:1px solid rgba(0,200,255,.14);
+}
+
+/* =========================
+   SERVICES DATA STRIP
+   ========================= */
+
+.service-flow{
+    max-width:1200px;
+    margin:70px auto 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.flow-item{
+    padding:12px 18px;
+    border:1px solid rgba(0,220,255,.2);
+    border-radius:30px;
+    font-size:10px;
+    color:#9eddf0;
+    background:rgba(0,200,255,.04);
+    animation:flowGlow 3s infinite alternate;
+}
+
+.flow-arrow{
+    color:var(--cyan);
+}
+
+@keyframes flowGlow{
+    to{
+        border-color:rgba(0,220,255,.65);
+        box-shadow:0 0 18px rgba(0,220,255,.1);
+    }
+}
+
+/* =========================
+   PROJECTS
+   ========================= */
+
+.projects{
+    background:
+        linear-gradient(rgba(3,7,17,.94),rgba(3,7,17,.94)),
+        radial-gradient(circle at center,rgba(0,160,255,.12),transparent 60%);
+}
+
+.projects-grid{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.project{
+    min-height:330px;
+    padding:30px;
+    border:1px solid var(--line);
+    background:
+        linear-gradient(145deg,rgba(0,180,255,.08),rgba(0,0,0,.15)),
+        #06101c;
+    border-radius:18px;
+    position:relative;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.project:hover{
+    transform:translateY(-8px);
+    border-color:var(--cyan);
+    box-shadow:var(--shadow);
+}
+
+.project-number{
+    color:rgba(0,220,255,.3);
+    font-size:60px;
+    font-weight:900;
+    position:absolute;
+    top:10px;
+    right:20px;
+}
+
+.project-icon{
+    width:60px;
+    height:60px;
+    border-radius:15px;
+    border:1px solid rgba(0,220,255,.3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:var(--cyan);
+    font-size:27px;
+    margin-bottom:25px;
+}
+
+.project h3{
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.project p{
+    color:#8ea5b9;
+    line-height:1.7;
+    font-size:14px;
+}
+
+.project-link{
+    position:absolute;
+    bottom:25px;
+    color:var(--cyan);
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+/* =========================
+   ABOUT
+   ========================= */
+
+.about-grid{
+    max-width:1250px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.about-visual{
+    min-height:500px;
+    border:1px solid var(--line);
+    border-radius:25px;
+    background:
+        radial-gradient(circle at center,rgba(0,220,255,.16),transparent 35%),
+        #06101c;
+    position:relative;
+    overflow:hidden;
+}
+
+.circuit{
+    position:absolute;
+    inset:30px;
+    border:1px dashed rgba(0,220,255,.25);
+    border-radius:20px;
+}
+
+.circuit-line{
+    position:absolute;
+    background:var(--cyan);
+    box-shadow:0 0 15px var(--cyan);
+}
+
+.cl1{
+    width:2px;
+    height:45%;
+    left:25%;
+    top:10%;
+}
+
+.cl2{
+    width:40%;
+    height:2px;
+    left:25%;
+    top:55%;
+}
+
+.cl3{
+    width:2px;
+    height:35%;
+    left:65%;
+    top:55%;
+}
+
+.cl4{
+    width:30%;
+    height:2px;
+    left:35%;
+    top:25%;
+}
+
+.node{
+    position:absolute;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 25px var(--cyan);
+    animation:nodePulse 2s infinite;
+}
+
+.n1{left:22%;top:21%;}
+.n2{left:61%;top:22%;animation-delay:.5s;}
+.n3{left:62%;top:51%;animation-delay:1s;}
+.n4{left:33%;top:52%;animation-delay:1.5s;}
+.n5{left:48%;top:76%;animation-delay:.8s;}
+
+@keyframes nodePulse{
+    50%{
+        transform:scale(1.8);
+        box-shadow:0 0 40px var(--cyan);
+    }
+}
+
+.about-core{
+    position:absolute;
+    width:190px;
+    height:190px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    border:2px solid var(--cyan);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:#030b14;
+    box-shadow:
+        0 0 30px rgba(0,220,255,.4),
+        inset 0 0 35px rgba(0,220,255,.15);
+}
+
+.about-core strong{
+    font-size:55px;
+    color:white;
+    text-shadow:0 0 25px var(--cyan);
+}
+
+.about-core span{
+    color:var(--cyan);
+    letter-spacing:3px;
+    font-size:9px;
+}
+
+.about-text h2{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.about-text h2 span{
+    color:var(--cyan);
+}
+
+.about-text p{
+    color:#91a8bc;
+    line-height:1.9;
+    margin-bottom:20px;
+}
+
+.feature-list{
+    display:grid;
+    gap:13px;
+    margin-top:25px;
+}
+
+.feature{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    color:#d7eaf5;
+    font-size:13px;
+}
+
+.feature b{
+    color:var(--cyan);
+    font-size:18px;
+}
+
+/* =========================
+   WORK PROCESS
+   ========================= */
+
+.process{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+}
+
+.process-step{
+    text-align:center;
+    position:relative;
+}
+
+.process-circle{
+    width:70px;
+    height:70px;
+    border:1px solid var(--cyan);
+    border-radius:50%;
+    margin:auto auto 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--cyan);
+    font-weight:900;
+    box-shadow:0 0 20px rgba(0,220,255,.1);
+    transition:.4s;
+}
+
+.process-step:hover .process-circle{
+    transform:scale(1.15);
+    background:rgba(0,220,255,.08);
+    box-shadow:0 0 40px rgba(0,220,255,.25);
+}
+
+.process-step h4{
+    margin-bottom:9px;
+}
+
+.process-step p{
+    color:#8098ac;
+    font-size:11px;
+    line-height:1.5;
+}
+
+/* =========================
+   CONTACT
+   ========================= */
+
+.contact{
+    background:
+        radial-gradient(circle at center,rgba(0,190,255,.1),transparent 55%);
+}
+
+.contact-grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:30px;
+}
+
+.contact-info{
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:35px;
+    background:rgba(5,18,30,.65);
+}
+
+.contact-info h3{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.contact-info > p{
+    color:#8ea7bb;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:17px 0;
+    border-bottom:1px solid rgba(0,220,255,.08);
+}
+
+.contact-item:last-child{
+    border-bottom:none;
+}
+
+.contact-icon{
+    width:45px;
+    height:45px;
+    border:1px solid rgba(0,220,255,.3);
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--cyan);
+}
+
+.contact-item small{
+    color:#7890a4;
+    display:block;
+    margin-bottom:4px;
+}
+
+.contact-item strong{
+    font-size:13px;
+}
+
+.contact-form{
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:35px;
+    background:rgba(5,18,30,.65);
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.input-group{
+    margin-bottom:17px;
+}
+
+.input-group label{
+    display:block;
+    color:#9eb5c9;
+    font-size:11px;
+    margin-bottom:8px;
+    letter-spacing:1px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea{
+    width:100%;
+    padding:14px 15px;
+    background:#030b14;
+    border:1px solid rgba(0,220,255,.15);
+    border-radius:8px;
+    outline:none;
+    color:white;
+    font-family:inherit;
+    transition:.3s;
+}
+
+.input-group textarea{
+    min-height:145px;
+    resize:vertical;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus{
+    border-color:var(--cyan);
+    box-shadow:0 0 20px rgba(0,220,255,.08);
+}
+
+/* =========================
+   FORM SUCCESS
+   ========================= */
+
+.success-message{
+    display:none;
+    margin-top:15px;
+    padding:14px;
+    border-radius:8px;
+    border:1px solid rgba(0,255,150,.3);
+    background:rgba(0,255,150,.06);
+    color:#8fffc9;
+    font-size:12px;
+}
+
+.success-message.show{
+    display:block;
+    animation:successIn .5s ease;
+}
+
+@keyframes successIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer{
+    padding:70px 5% 30px;
+    border-top:1px solid var(--line);
+    background:#02060d;
+}
+
+.footer-grid{
+    max-width:1300px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:50px;
+}
+
+.footer-brand h2{
+    font-size:28px;
+    letter-spacing:2px;
+}
+
+.footer-brand h2 span{
+    color:var(--cyan);
+}
+
+.footer-brand p{
+    color:#71879b;
+    line-height:1.7;
+    font-size:13px;
+    max-width:450px;
+    margin-top:15px;
+}
+
+footer h4{
+    margin-bottom:20px;
+    color:#eaf8ff;
+}
+
+footer ul{
+    list-style:none;
+}
+
+footer li{
+    margin-bottom:12px;
+}
+
+footer li a{
+    text-decoration:none;
+    color:#7f96aa;
+    font-size:12px;
+    transition:.3s;
+}
+
+footer li a:hover{
+    color:var(--cyan);
+}
+
+.footer-bottom{
+    max-width:1300px;
+    margin:50px auto 0;
+    padding-top:25px;
+    border-top:1px solid rgba(0,220,255,.08);
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    color:#5e7487;
+    font-size:10px;
+}
+
+/* =========================
+   SCROLL TOP
+   ========================= */
+
+#topBtn{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:1px solid var(--cyan);
+    background:#061522;
+    color:var(--cyan);
+    cursor:pointer;
+    z-index:3000;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+#topBtn.show{
+    opacity:1;
+    visibility:visible;
+}
+
+#topBtn:hover{
+    background:var(--cyan);
+    color:#001018;
+    box-shadow:0 0 30px rgba(0,220,255,.5);
+}
+
+/* =========================
+   NOTIFICATION
+   ========================= */
+
+.toast{
+    position:fixed;
+    right:25px;
+    top:100px;
+    padding:16px 22px;
+    background:#071a29;
+    border:1px solid var(--cyan);
+    border-radius:10px;
+    color:white;
+    font-size:12px;
+    z-index:9000;
+    transform:translateX(150%);
+    transition:.5s;
+    box-shadow:0 0 30px rgba(0,220,255,.2);
+}
+
+.toast.show{
+    transform:translateX(0);
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media(max-width:1050px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .hero-description{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-logo-area{
+        min-height:500px;
+    }
+
+    .tech-logo{
+        width:480px;
+        height:480px;
+    }
+
+    .services-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .projects-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+    }
+
+    .process{
+        grid-template-columns:repeat(3,1fr);
+        row-gap:40px;
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:750px){
+
+    .navbar{
+        min-height:70px;
+    }
+
+    .nav-links{
+        position:absolute;
+        top:70px;
+        left:0;
+        width:100%;
+        background:rgba(2,8,17,.98);
+        border-bottom:1px solid var(--line);
+        flex-direction:column;
+        align-items:center;
+        gap:0;
+        max-height:0;
+        overflow:hidden;
+        transition:.5s;
+    }
+
+    .nav-links.active{
+        max-height:500px;
+        padding:20px 0;
+    }
+
+    .nav-links li{
+        padding:13px;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .hero{
+        padding-top:110px;
+    }
+
+    .hero h1{
+        font-size:54px;
+    }
+
+    .tech-logo{
+        width:390px;
+        height:390px;
+        min-width:0;
+        min-height:0;
+    }
+
+    .logo-title{
+        font-size:10px;
+        letter-spacing:3px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stat{
+        border-bottom:1px solid var(--line);
+    }
+
+    .stat:nth-child(2){
+        border-right:none;
+    }
+
+    .services-grid,
+    .projects-grid{
+        grid-template-columns:1fr;
+    }
+
+    .process{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    section{
+        padding:80px 5%;
+    }
+}
+
+@media(max-width:480px){
+
+    .nav-name{
+        font-size:13px;
+    }
+
+    .nav-xe{
+        width:40px;
+        height:40px;
+        font-size:12px;
+    }
+
+    .hero h1{
+        font-size:45px;
+        letter-spacing:-2px;
+    }
+
+    .tech-logo{
+        width:330px;
+        height:330px;
+    }
+
+    .logo-xe{
+        font-size:62px;
+    }
+
+    .logo-main{
+        width:60%;
+        height:60%;
+    }
+
+    .hero-logo-area{
+        min-height:390px;
+    }
+
+    .process{
+        grid-template-columns:1fr;
+    }
+
+    .contact-form,
+    .contact-info{
+        padding:22px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     LOADER
+     ========================= -->
+
+<div class="loader" id="loader">
+
+    <div class="loader-logo">
+        <div class="loader-ring"></div>
+        <span>XE</span>
+    </div>
+
+    <div class="loader-text">
+        INITIALIZING XAVI ENGINEERING
+    </div>
+
+</div>
+
+<!-- BACKGROUND PARTICLES -->
+
+<div id="particles"></div>
+
+<!-- =========================
+     NAVBAR
+     ========================= -->
+
+<header>
+
+<nav class="navbar">
+
+    <a href="#home" class="nav-logo">
+
+        <div class="nav-xe">
+            XE
+        </div>
+
+        <div class="nav-name">
+            XAVI ENGINEERING
+            <small>ENGINEERING TECHNOLOGY</small>
+        </div>
+
+    </a>
+
+    <div class="menu-btn" id="menuBtn">
+        ☰
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#services">SERVICES</a></li>
+        <li><a href="#projects">PROJECTS</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#process">PROCESS</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+
+    </ul>
+
+</nav>
+
+</header>
+
+<!-- =========================
+     HERO
+     ========================= -->
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="hero-grid">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                <i></i>
+                ENGINEERING SYSTEM ONLINE
+            </div>
+
+            <h1>
+                <span class="xavi">XAVI</span>
+                <span class="engineering">ENGINEERING</span>
+            </h1>
+
+            <p class="hero-description">
+                Professional engineering solutions in Electronics,
+                Telecommunication, Computer Networking, HVAC,
+                Smart Automation and Technical Support.
+                We transform technical ideas into practical systems.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#services" class="btn btn-primary">
+                    EXPLORE SERVICES
+                </a>
+
+                <a href="#contact" class="btn btn-outline">
+                    REQUEST A SERVICE
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- ADVANCED LOGO -->
+
+        <div class="hero-logo-area">
+
+            <div class="tech-logo">
+
+                <div class="signal"></div>
+                <div class="signal"></div>
+                <div class="signal"></div>
+
+                <div class="logo-orbit orbit-one"></div>
+                <div class="logo-orbit orbit-two"></div>
+                <div class="logo-orbit orbit-three"></div>
+
+                <div class="logo-dot dot-one"></div>
+                <div class="logo-dot dot-two"></div>
+                <div class="logo-dot dot-three"></div>
+                <div class="logo-dot dot-four"></div>
+
+                <div class="logo-main">
+
+                    <div class="logo-xe">
+                        X<span>E</span>
+                    </div>
+
+                    <div class="logo-title">
+                        XAVI
+                    </div>
+
+                    <div class="logo-subtitle">
+                        ENGINEERING
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     STATS
+     ========================= -->
+
+<div class="stats">
+
+    <div class="stat">
+        <div class="stat-number" data-target="6">0</div>
+        <p>Engineering Departments</p>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number" data-target="20">0</div>
+        <p>Technical Services</p>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number" data-target="24">0</div>
+        <p>Support Availability</p>
+    </div>
+
+    <div class="stat">
+        <div class="stat-number" data-target="100">0</div>
+        <p>Engineering Focus %</p>
+    </div>
+
+</div>
+
+<!-- =========================
+     SERVICES
+     ========================= -->
+
+<section id="services">
+
+    <div class="section-head">
+
+        <div class="section-label">
+            ENGINEERING DEPARTMENTS
+        </div>
+
+        <h2>
+            Technical Services
+        </h2>
+
+        <p>
+            XAVI ENGINEERING combines multiple technical disciplines
+            to provide practical engineering solutions for homes,
+            businesses, buildings and technical projects.
+        </p>
+
+    </div>
+
+    <div class="services-grid">
+
+        <!-- ELECTRONICS -->
+
+        <article class="service-card">
+
+            <div class="service-image">
+
+                <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80"
+                alt="Electronics engineering">
+
+                <div class="image-overlay"></div>
+
+            </div>
+
+            <div class="service-content">
+
+                <div class="service-icon electric-icon">
+                    ⚡
+                </div>
+
+                <h3>Electronics Engineering</h3>
+
+                <p>
+                    Electronic circuit development, embedded systems,
+                    sensors, microcontrollers, PCB concepts,
+                    testing and troubleshooting.
+                </p>
+
+                <div class="service-tags">
+                    <span>ARDUINO</span>
+                    <span>ESP32</span>
+                    <span>PCB</span>
+                    <span>SENSORS</span>
+                    <span>EMBEDDED</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- TELECOMMUNICATION -->
+
+        <article class="service-card">
+
+            <div class="service-image">
+
+                <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80"
+                alt="Telecommunication engineering">
+
+                <div class="image-overlay"></div>
+
+            </div>
+
+            <div class="service-content">
+
+                <div class="service-icon telecom-icon">
+                    📡
+                </div>
+
+                <h3>Telecommunication</h3>
+
+                <p>
+                    Wireless communication, GSM systems,
+                    fiber optics, radio communication,
+                    mobile networks and communication infrastructure.
+                </p>
+
+                <div class="service-tags">
+                    <span>GSM</span>
+                    <span>4G</span>
+                    <span>5G</span>
+                    <span>FIBER</span>
+                    <span>RF</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- NETWORKING -->
+
+        <article class="service-card">
+
+            <div class="service-image">
+
+                <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1000&q=80"
+                alt="Computer networking">
+
+                <div class="image-overlay"></div>
+
+            </div>
+
+            <div class="service-content">
+
+                <div class="service-icon network-icon">
+                    🌐
+                </div>
+
+                <h3>Computer Networking</h3>
+
+                <p>
+                    LAN, WAN, WLAN, routing, switching,
+                    structured cabling, network configuration,
+                    troubleshooting and infrastructure.
+                </p>
+
+                <div class="service-tags">
+                    <span>CISCO</span>
+                    <span>CCNA</span>
+                    <span>LAN</span>
+                    <span>WLAN</span>
+                    <span>ROUTING</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- HVAC -->
+
+        <article class="service-card">
+
+            <div class="service-image">
+
+                <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1000&q=80"
+                alt="HVAC engineering">
+
+                <div class="image-overlay"></div>
+
+            </div>
+
+            <div class="service-content">
+
+                <div class="service-icon hvac-icon">
+                    ❄
+                </div>
+
+                <h3>HVAC Engineering</h3>
+
+                <p>
+                    Air conditioning installation, ductwork,
+                    copper pipework, VRF systems, maintenance,
+                    testing, commissioning and troubleshooting.
+                </p>
+
+                <div class="service-tags">
+                    <span>VRF</span>
+                    <span>DUCT</span>
+                    <span>AC</span>
+                    <span>MAINTENANCE</span>
+                    <span>COMMISSIONING</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- AUTOMATION -->
+
+        <article class="service-card">
+
+            <div class="service-image">
+
+                <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80"
+                alt="Smart automation engineering">
+
+                <div class="image-overlay"></div>
+
+            </div>
+
+            <div class="service-content">
+
+                <div class="service-icon automation-icon">
+                    🤖
+                </div>
+
+                <h3>Smart Automation</h3>
+
+                <p>
+                    IoT systems, automated control,
+                    smart agriculture, GSM control,
+                    sensors and intelligent monitoring.
+                </p>
+
+                <div class="service-tags">
+                    <span>IoT</span>
+                    <span>GSM</span>
+                    <span>ESP32</span>
+                    <span>SMART FARM</span>
+                    <span>CONTROL</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- TECH SUPPORT -->
+
+        <article class="service-card">
+
+            <div class="service-image">
+
+                <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1000&q=80"
+                alt="Technical support engineering">
+
+                <div class="image-overlay"></div>
+
+            </div>
+
+            <div class="service-content">
+
+                <div class="service-icon support-icon">
+                    🛠
+                </div>
+
+                <h3>Technical Support</h3>
+
+                <p>
+                    Technical diagnosis, installation support,
+                    equipment inspection, troubleshooting,
+                    maintenance and engineering consultation.
+                </p>
+
+                <div class="service-tags">
+                    <span>DIAGNOSIS</span>
+                    <span>REPAIR</span>
+                    <span>TESTING</span>
+                    <span>INSPECTION</span>
+                    <span>SUPPORT</span>
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <div class="service-flow">
+
+        <div class="flow-item">ANALYZE</div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-item">DESIGN</div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-item">INSTALL</div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-item">TEST</div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-item">COMMISSION</div>
+        <div class="flow-arrow">→</div>
+
+        <div class="flow-item">SUPPORT</div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECTS
+     ========================= -->
+
+<section class="projects" id="projects">
+
+    <div class="section-head">
+
+        <div class="section-label">
+            ENGINEERING PROJECTS
+        </div>
+
+        <h2>
+            Technology In Action
+        </h2>
+
+        <p>
+            Practical engineering projects combining electronics,
+            communication, networking, automation and technical systems.
+        </p>
+
+    </div>
+
+    <div class="projects-grid">
+
+        <article class="project">
+
+            <div class="project-number">01</div>
+
+            <div class="project-icon">📍</div>
+
+            <h3>GSM + GPS Locator</h3>
+
+            <p>
+                A smart location system capable of acquiring
+                GPS coordinates and communicating location
+                information through GSM technology.
+            </p>
+
+            <div class="project-link">
+                ELECTRONICS + TELECOM
+            </div>
+
+        </article>
+
+
+        <article class="project">
+
+            <div class="project-number">02</div>
+
+            <div class="project-icon">🌱</div>
+
+            <h3>GSM Smart Irrigation</h3>
+
+            <p>
+                Smart agricultural automation using soil
+                monitoring, GSM communication and automatic
+                irrigation control.
+            </p>
+
+            <div class="project-link">
+                IoT + AUTOMATION
+            </div>
+
+        </article>
+
+
+        <article class="project">
+
+            <div class="project-number">03</div>
+
+            <div class="project-icon">📶</div>
+
+            <h3>Fiber Optic Network</h3>
+
+            <p>
+                High-speed optical communication infrastructure
+                designed for reliable data transmission.
+            </p>
+
+            <div class="project-link">
+                TELECOMMUNICATION
+            </div>
+
+        </article>
+
+
+        <article class="project">
+
+            <div class="project-number">04</div>
+
+            <div class="project-icon">🖧</div>
+
+            <h3>Network Infrastructure</h3>
+
+            <p>
+                Structured network design using switches,
+                routers, access points and organized cabling.
+            </p>
+
+            <div class="project-link">
+                NETWORKING
+            </div>
+
+        </article>
+
+
+        <article class="project">
+
+            <div class="project-number">05</div>
+
+            <div class="project-icon">❄</div>
+
+            <h3>HVAC Systems</h3>
+
+            <p>
+                HVAC installation and technical maintenance
+                covering indoor units, outdoor units,
+                ductwork and control systems.
+            </p>
+
+            <div class="project-link">
+                HVAC ENGINEERING
+            </div>
+
+        </article>
+
+
+        <article class="project">
+
+            <div class="project-number">06</div>
+
+            <div class="project-icon">⚙</div>
+
+            <h3>Smart Control System</h3>
+
+            <p>
+                Sensor-based control systems combining
+                embedded electronics, communication and
+                automated decision making.
+            </p>
+
+            <div class="project-link">
+                SMART AUTOMATION
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+     ========================= -->
+
+<section id="about">
+
+    <div class="about-grid">
+
+        <div class="about-visual">
+
+            <div class="circuit">
+
+                <div class="circuit-line cl1"></div>
+                <div class="circuit-line cl2"></div>
+                <div class="circuit-line cl3"></div>
+                <div class="circuit-line cl4"></div>
+
+                <div class="node n1"></div>
+                <div class="node n2"></div>
+                <div class="node n3"></div>
+                <div class="node n4"></div>
+                <div class="node n5"></div>
+
+            </div>
+
+            <div class="about-core">
+
+                <strong>XE</strong>
+                <span>XAVI ENGINEERING</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-text">
+
+            <div class="section-label">
+                ABOUT THE ENGINEERING PLATFORM
+            </div>
+
+            <h2>
+                Engineering
+                <span>Beyond Ideas.</span>
+            </h2>
+
+            <p>
+                XAVI ENGINEERING is a technology-focused platform
+                bringing together different engineering disciplines
+                under one technical vision.
+            </p>
+
+            <p>
+                The platform focuses on practical solutions,
+                system installation, technical troubleshooting,
+                engineering projects and technology development.
+            </p>
+
+            <div class="feature-list">
+
+                <div class="feature">
+                    <b>✓</b>
+                    Practical engineering solutions
+                </div>
+
+                <div class="feature">
+                    <b>✓</b>
+                    Electronics and embedded systems
+                </div>
+
+                <div class="feature">
+                    <b>✓</b>
+                    Telecommunication technology
+                </div>
+
+                <div class="feature">
+                    <b>✓</b>
+                    Network infrastructure
+                </div>
+
+                <div class="feature">
+                    <b>✓</b>
+                    HVAC installation and maintenance
+                </div>
+
+                <div class="feature">
+                    <b>✓</b>
+                    Smart automation and IoT
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROCESS
+     ========================= -->
+
+<section id="process">
+
+    <div class="section-head">
+
+        <div class="section-label">
+            ENGINEERING WORKFLOW
+        </div>
+
+        <h2>
+            How We Work
+        </h2>
+
+        <p>
+            A structured technical process from identifying the
+            problem to testing and supporting the final system.
+        </p>
+
+    </div>
+
+
+    <div class="process">
+
+        <div class="process-step">
+
+            <div class="process-circle">01</div>
+
+            <h4>ANALYZE</h4>
+
+            <p>
+                Understand the technical problem and requirements.
+            </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+            <div class="process-circle">02</div>
+
+            <h4>DESIGN</h4>
+
+            <p>
+                Develop a practical technical solution.
+            </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+            <div class="process-circle">03</div>
+
+            <h4>INSTALL</h4>
+
+            <p>
+                Implement the engineering system.
+            </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+            <div class="process-circle">04</div>
+
+            <h4>TEST</h4>
+
+            <p>
+                Inspect, test and verify system operation.
+            </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+            <div class="process-circle">05</div>
+
+            <h4>SUPPORT</h4>
+
+            <p>
+                Provide maintenance and technical support.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+     ========================= -->
+
+<section class="contact" id="contact">
+
+    <div class="section-head">
+
+        <div class="section-label">
+            CONNECT WITH XAVI ENGINEERING
+        </div>
+
+        <h2>
+            Start Your Project
+        </h2>
+
+        <p>
+            Tell us what technical service or engineering
+            project you need.
+        </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+        <div class="contact-info">
+
+            <h3>
+                XAVI ENGINEERING
+            </h3>
+
+            <p>
+                Engineering technology for practical
+                real-world solutions.
+            </p>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    ✉
+                </div>
+
+                <div>
+                    <small>EMAIL</small>
+                    <strong>fraviexavie@gmail.com</strong>
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    ☎
+                </div>
+
+                <div>
+                    <small>PHONE</small>
+                    <strong>0790430749</strong>
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    ⚡
+                </div>
+
+                <div>
+                    <small>ENGINEERING</small>
+                    <strong>Electronics • Telecom • Networking</strong>
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-icon">
+                    ❄
+                </div>
+
+                <div>
+                    <small>TECHNICAL</small>
+                    <strong>HVAC • Automation • Support</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form class="contact-form" id="contactForm">
+
+            <div class="form-row">
+
+                <div class="input-group">
+
+                    <label>YOUR NAME</label>
+
+                    <input
+                    type="text"
+                    id="clientName"
+                    placeholder="Enter your name"
+                    required>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>EMAIL</label>
+
+                    <input
+                    type="email"
+                    id="clientEmail"
+                    placeholder="Enter your email"
+                    required>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="input-group">
+
+                    <label>PHONE</label>
+
+                    <input
+                    type="tel"
+                    id="clientPhone"
+                    placeholder="Phone number">
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>SERVICE</label>
+
+                    <select id="clientService" required>
+
+                        <option value="">Select service</option>
+
+                        <option>Electronics Engineering</option>
+                        <option>Telecommunication</option>
+                        <option>Computer Networking</option>
+                        <option>HVAC Engineering</option>
+                        <option>Smart Automation</option>
+                        <option>Technical Support</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>YOUR TECHNICAL REQUIREMENT</label>
+
+                <textarea
+                id="clientMessage"
+                placeholder="Describe your project or technical problem..."
+                required></textarea>
+
+            </div>
+
+
+            <button
+            type="submit"
+            class="btn btn-primary"
+            style="width:100%;">
+
+                SEND ENGINEERING REQUEST →
+
+            </button>
+
+
+            <div
+            class="success-message"
+            id="successMessage">
+
+                ✓ Request saved successfully on this device.
+                XAVI ENGINEERING can review your submitted information.
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+     ========================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+
+            <h2>
+                XAVI <span>ENGINEERING</span>
+            </h2>
+
+            <p>
+                Electronics • Telecommunication • Networking • HVAC
+                • Smart Automation • Technical Support.
+                Engineering technology focused on practical solutions.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>DEPARTMENTS</h4>
+
+            <ul>
+
+                <li><a href="#services">Electronics Engineering</a></li>
+                <li><a href="#services">Telecommunication</a></li>
+                <li><a href="#services">Networking</a></li>
+                <li><a href="#services">HVAC Engineering</a></li>
+                <li><a href="#services">Smart Automation</a></li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h4>CONTACT</h4>
+
+            <ul>
+
+                <li>
+                    <a href="mailto:fraviexavie@gmail.com">
+                        fraviexavie@gmail.com
+                    </a>
+                </li>
+
+                <li>
+                    <a href="tel:0790430749">
+                        0790430749
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contact">
+                        Request Technical Service
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 XAVI ENGINEERING. All rights reserved.
+        </span>
+
+        <span>
+            ENGINEER • TECHNOLOGY • INNOVATION
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- SCROLL TOP -->
+
+<button id="topBtn">
+    ↑
+</button>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast">
+    Engineering request saved.
+</div>
+
+
+<script>
+
+/* =========================================================
+   XAVI ENGINEERING JAVASCRIPT
+   ========================================================= */
+
+
+/* =========================
+   LOADER
+   ========================= */
+
+window.addEventListener("load",function(){
+
+    setTimeout(function(){
+
+        document.getElementById("loader")
+        .classList.add("hide");
+
+    },1200);
+
+});
+
+
+/* =========================
+   PARTICLES
+   ========================= */
+
+const particleContainer =
+document.getElementById("particles");
+
+for(let i=0;i<65;i++){
+
+    const particle =
+    document.createElement("div");
+
+    particle.className="particle";
+
+    particle.style.left =
+    Math.random()*100+"%";
+
+    particle.style.animationDuration =
+    (5+Math.random()*12)+"s";
+
+    particle.style.animationDelay =
+    (-Math.random()*15)+"s";
+
+    particle.style.opacity =
+    .2+Math.random()*.7;
+
+    particleContainer.appendChild(particle);
+}
+
+
+/* =========================
+   MOBILE MENU
+   ========================= */
+
+const menuBtn =
+document.getElementById("menuBtn");
+
+const navLinks =
+document.getElementById("navLinks");
+
+menuBtn.addEventListener("click",function(){
+
+    navLinks.classList.toggle("active");
+
+    if(navLinks.classList.contains("active")){
+
+        menuBtn.innerHTML="✕";
+
+    }else{
+
+        menuBtn.innerHTML="☰";
+
+    }
+
+});
+
+
+document.querySelectorAll(".nav-links a")
+.forEach(function(link){
+
+    link.addEventListener("click",function(){
+
+        navLinks.classList.remove("active");
+
+        menuBtn.innerHTML="☰";
+
+    });
+
+});
+
+
+/* =========================
+   SERVICE CARD ANIMATION
+   ========================= */
+
+const cards =
+document.querySelectorAll(".service-card");
+
+const cardObserver =
+new IntersectionObserver(function(entries){
+
+    entries.forEach(function(entry){
+
+        if(entry.isIntersecting){
+
+            const card = entry.target;
+
+            const index =
+            [...cards].indexOf(card);
+
+            setTimeout(function(){
+
+                card.classList.add("visible");
+
+            },index*120);
+
+            cardObserver.unobserve(card);
+
+        }
+
+    });
+
+},{
+    threshold:.12
+});
+
+
+cards.forEach(function(card){
+
+    cardObserver.observe(card);
+
+});
+
+
+/* =========================
+   COUNTER ANIMATION
+   ========================= */
+
+const counters =
+document.querySelectorAll(".stat-number");
+
+let countersStarted=false;
+
+const counterObserver =
+new IntersectionObserver(function(entries){
+
+    entries.forEach(function(entry){
+
+        if(entry.isIntersecting && !countersStarted){
+
+            countersStarted=true;
+
+            counters.forEach(function(counter){
+
+                const target =
+                parseInt(counter.dataset.target);
+
+                let current=0;
+
+                const duration=1500;
+
+                const increment =
+                target/(duration/25);
+
+                const timer =
+                setInterval(function(){
+
+                    current+=increment;
+
+                    if(current>=target){
+
+                        current=target;
+
+                        clearInterval(timer);
+
+                    }
+
+                    counter.textContent=
+                    Math.floor(current);
+
+                },25);
+
+            });
+
+        }
+
+    });
+
+},{
+    threshold:.5
+});
+
+
+counterObserver.observe(
+    document.querySelector(".stats")
+);
+
+
+/* =========================
+   CONTACT FORM
+   ========================= */
+
+const contactForm =
+document.getElementById("contactForm");
+
+contactForm.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+
+    const client={
+
+        id:Date.now(),
+
+        name:
+        document.getElementById("clientName").value,
+
+        email:
+        document.getElementById("clientEmail").value,
+
+        phone:
+        document.getElementById("clientPhone").value,
+
+        service:
+        document.getElementById("clientService").value,
+
+        message:
+        document.getElementById("clientMessage").value,
+
+        date:
+        new Date().toLocaleString()
+
+    };
+
+
+    let requests =
+    JSON.parse(
+        localStorage.getItem(
+            "xaviEngineeringClients"
+        )
+    ) || [];
+
+
+    requests.push(client);
+
+
+    localStorage.setItem(
+        "xaviEngineeringClients",
+        JSON.stringify(requests)
+    );
+
+
+    document
+    .getElementById("successMessage")
+    .classList.add("show");
+
+
+    showToast(
+        "Engineering request saved successfully."
+    );
+
+
+    contactForm.reset();
+
+});
+
+
+/* =========================
+   TOAST
+   ========================= */
+
+function showToast(message){
+
+    const toast =
+    document.getElementById("toast");
+
+    toast.textContent=message;
+
+    toast.classList.add("show");
+
+    setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },3500);
+
+}
+
+
+/* =========================
+   SCROLL TOP
+   ========================= */
+
+const topBtn =
+document.getElementById("topBtn");
+
+
+window.addEventListener("scroll",function(){
+
+    if(window.scrollY>500){
+
+        topBtn.classList.add("show");
+
+    }else{
+
+        topBtn.classList.remove("show");
+
+    }
+
+});
+
+
+topBtn.addEventListener("click",function(){
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+});
+
+
+/* =========================
+   PARALLAX HERO LOGO
+   ========================= */
+
+const logo =
+document.querySelector(".tech-logo");
+
+
+window.addEventListener("mousemove",function(e){
+
+    if(window.innerWidth>900){
+
+        const x =
+        (window.innerWidth/2-e.clientX)/40;
+
+        const y =
+        (window.innerHeight/2-e.clientY)/40;
+
+        logo.style.transform=
+        `translate(${x}px,${y}px)`;
+
+    }
+
+});
+
+
+/* =========================
+   ACTIVE NAVIGATION
+   ========================= */
+
+const sections =
+document.querySelectorAll("section[id]");
+
+const links =
+document.querySelectorAll(".nav-links a");
+
+
+window.addEventListener("scroll",function(){
+
+    let current="";
+
+    sections.forEach(function(section){
+
+        const sectionTop =
+        section.offsetTop-150;
+
+        if(window.scrollY>=sectionTop){
+
+            current=section.getAttribute("id");
+
+        }
+
+    });
+
+
+    links.forEach(function(link){
+
+        link.style.color="";
+
+        if(
+            link.getAttribute("href") ===
+            "#"+current
+        ){
+
+            link.style.color=
+            "var(--cyan)";
+
+        }
+
+    });
+
+});
+
+
+/* =========================
+   TILT EFFECT ON PROJECTS
+   ========================= */
+
+document.querySelectorAll(".project")
+.forEach(function(project){
+
+    project.addEventListener("mousemove",function(e){
+
+        if(window.innerWidth<800)return;
+
+        const rect=
+        project.getBoundingClientRect();
+
+        const x=
+        e.clientX-rect.left;
+
+        const y=
+        e.clientY-rect.top;
+
+        const rotateY=
+        ((x/rect.width)-.5)*8;
+
+        const rotateX=
+        ((y/rect.height)-.5)*-8;
+
+        project.style.transform=
+        `perspective(700px)
+         rotateX(${rotateX}deg)
+         rotateY(${rotateY}deg)
+         translateY(-8px)`;
+
+    });
+
+
+    project.addEventListener("mouseleave",function(){
+
+        project.style.transform="";
+
+    });
+
+});
+
+
+/* =========================
+   SMOOTH BUTTON FEEDBACK
+   ========================= */
+
+document.querySelectorAll(".btn")
+.forEach(function(button){
+
+    button.addEventListener("click",function(){
+
+        button.style.transform="scale(.96)";
+
+        setTimeout(function(){
+
+            button.style.transform="";
+
+        },120);
+
+    });
+
+});
+
+
+/* =========================
+   CONSOLE BRAND
+   ========================= */
+
+console.log(
+`
+╔════════════════════════════════════╗
+║       XAVI ENGINEERING             ║
+║ Electronics • Telecom • Networking  ║
+║ HVAC • Automation • Support        ║
+╚════════════════════════════════════╝
+`
+);
+
+</script>
+
+</body>
+</html>
